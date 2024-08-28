@@ -1,0 +1,70 @@
+{
+    "Preprocessing": {
+        "WaveletDenoising": {
+            "Wavelet": "db1",
+            "Level": 2,
+            "Threshold": "soft",
+            "Use": false
+        },
+        "GaussianBlur": {
+            "KernelSize": 7,
+            "Use": true
+        },
+        "HOG": {
+            "Visualize": true,
+            "Use": true
+        }
+    },
+    "InputImages": {
+        "Width": 110,
+        "Height": 110,
+        "TotalTrainingImages": 7000
+    },
+    "Augmentation": {
+        "Clahe": {
+            "ClipLimit": 0.5
+        }
+    },
+    "DataPaths": {
+        "TrainImages": "data/original/train/train_images.csv",
+        "TrainLabels": "data/original/train/train_labels.csv",
+        "TestImages" : "data/original/test/test_images.csv",
+        "TestLabels": "data/original/test/test_labels.csv"
+    },
+    "Models": {
+        "SVM": {
+            "C": [0.1, 1, 10, 100],
+            "Kernel": ["linear", "rbf", "poly"]
+        },
+        "DecisionTrees": {
+            "MaxDepth": [3, 5, 10, 50],
+            "MinSamplesSplit": [2, 5, 10, 50],
+            "Criterion": ["gini", "entropy"]
+        },
+        "XGBoost": {
+            "Nestimators": [10, 50, 100, 150],
+            "LearningRate": [0.001, 0.01, 0.1, 0.5],
+            "UseLabelEncoder": [false],
+            "EvalMetric": "logloss"
+        },
+        "KNN": {
+            "Neighbors": [2, 3, 5, 10],
+            "Metric": ["minkowski", "euclidean", "manhattan"],
+            "Weights": "distance"
+        },
+        "ClassWeight": "balanced"
+    },
+    "Training": {
+        "GridSearchCV": {
+            "CV": 5,
+            "Scoring": "f1",
+            "Verbose": 2,
+            "TestSize": 0.2
+        },
+        "Seed": 42
+    },
+    "Joblib": {
+        "Parallelize": false, 
+        "NumJobs": -1
+    }
+}
