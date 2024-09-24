@@ -71,17 +71,17 @@ To run the project, follow these steps:
    git clone https://github.com/misabellerv/VDV.git
    cd VDV
    ```
-
 2. **Install Dependencies**:
-   
- With pip:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   With Conda:
-      ```bash
-   conda env create -f environment.yml
-      ```
+
+   - **With pip**:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+   - **With Conda**:
+     ```bash
+     conda env create -f environment.yml
+     ```
 4. **Activate Environment**:
    With Conda:
    ```bash
