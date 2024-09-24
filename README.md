@@ -77,10 +77,10 @@ To run the project, follow these steps:
    ```bash
    pip install -r requirements.txt
    ```
-With Conda:
-   ```bash
-conda env create -f environment.yml
-   ```
+   With Conda:
+      ```bash
+   conda env create -f environment.yml
+      ```
 3. **Activate Environment**:
    With Conda:
    ```bash
