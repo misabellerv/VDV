@@ -16,8 +16,7 @@ is undergoing a technological revolution. AI is capable of processing large volu
 
 ## 📊 Data
 
-The data for this project comes from the **Magellan mission**, which provided radar imaging of the Venusian surface. The processed version of the dataset can be accessed from [Kaggle]([https://www.kaggle.com/](https://www.kaggle.
-com/datasets/fmena14/volcanoesvenus)). The original images from the radar, with a resolution of 75
+The data for this project comes from the **Magellan mission**, which provided radar imaging of the Venusian surface. The processed version of the dataset can be accessed from [Kaggle]([https://www.kaggle.com/](https://www.kaggle.com/datasets/fmena14/volcanoesvenus)). The original images from the radar, with a resolution of 75
 meters per pixel, were cropped into smaller sections and converted to grayscale, with
 a resolution of 120 × 120 pixels. This processing facilitates a better interpretation of each
 image by reducing the amount of encoded information and increasing the volume of
