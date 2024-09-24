@@ -25,8 +25,7 @@ class ModelSelection:
         return  SVC(random_state=self.seed,
                         C=self.C,
                         kernel=self.kernel,
-                        class_weight=self.class_weight,
-                        random_state=self.seed
+                        class_weight=self.class_weight
                     )
 
     def dt(self):
@@ -35,8 +34,7 @@ class ModelSelection:
                                           max_depth=self.max_depth,
                                           min_samples_split=self.min_samples_split,
                                           criterion=self.criterion,
-                                          class_weight=self.class_weight,
-                                          random_state=self.seed
+                                          class_weight=self.class_weight
                                         )
 
     def xgb(self):
