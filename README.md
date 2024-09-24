@@ -83,7 +83,85 @@ To run the project, follow these steps:
      conda env create -f environment.yml
      ```
 4. **Activate Environment**:
-   With Conda:
-   ```bash
-   conda activate <env_name>
-   ```
+   -  **With Conda**:
+      ```bash
+      conda activate <env_name>
+      ```
+5. ⚙️ **Set Configurations**:
+
+   All project configurations are embedded in a single JSON file located at `configs/configs.json`. Below is an explanation of each configuration parameter and its purpose in the project:
+   
+   ### 1. Preprocessing
+   
+   - **WaveletDenoising**: Configuration for wavelet-based noise reduction.
+     - `Wavelet`: The type of wavelet function used (e.g., "db1" refers to Daubechies wavelet).
+     - `Level`: The level of decomposition used for wavelet denoising.
+     - `Threshold`: The thresholding method, either "soft" or "hard".
+     - `Use`: Whether to apply wavelet denoising (`true` or `false`).
+   
+   - **GaussianBlur**: Configuration for applying Gaussian Blur to the images.
+     - `KernelSize`: Size of the kernel used for Gaussian blurring (e.g., 9 means a 9x9 kernel).
+     - `Use`: Whether to apply Gaussian Blur (`true` or `false`).
+   
+   - **HOG**: Configuration for the Histogram of Oriented Gradients (HOG) feature extraction.
+     - `Visualize`: Whether to visualize the HOG features (`true` or `false`).
+     - `Use`: Whether to use HOG for feature extraction (`true` or `false`).
+   
+   ### 2. InputImages
+   
+   - **Width**: The width of the input images used in the model (in pixels).
+   - **Height**: The height of the input images used in the model (in pixels).
+   - **TotalTrainingImages**: The total number of training images to be used.
+   
+   ### 3. Augmentation
+   
+   - **Clahe**: Configuration for CLAHE (Contrast Limited Adaptive Histogram Equalization).
+     - `ClipLimit`: The threshold for contrast clipping, controls the level of contrast enhancement (e.g., `0.5`).
+   
+   ### 4. DataPaths
+   
+   - **TrainImages**: Path to the CSV file containing training image data.
+   - **TrainLabels**: Path to the CSV file containing the labels for the training images.
+   - **TestImages**: Path to the CSV file containing test image data.
+   - **TestLabels**: Path to the CSV file containing the labels for the test images.
+   
+   ### 5. Models
+   
+   The models section defines the hyperparameters and options for different machine learning algorithms used in the project.
+   
+   - **SVM**: Support Vector Machine parameters.
+     - `C`: Regularization parameters tested during model training.
+     - `Kernel`: Kernel types for the SVM (e.g., "linear", "rbf", "poly").
+   
+   - **DecisionTrees**: Decision Tree classifier parameters.
+     - `MaxDepth`: Maximum depth of the trees.
+     - `MinSamplesSplit`: Minimum number of samples required to split a node.
+     - `Criterion`: The function used to measure the quality of a split ("gini" or "entropy").
+   
+   - **XGBoost**: XGBoost classifier parameters.
+     - `Nestimators`: Number of trees in the model.
+     - `LearningRate`: Step size shrinkage used in the update to prevent overfitting.
+     - `UseLabelEncoder`: Whether to use the label encoder for XGBoost (`true` or `false`).
+     - `EvalMetric`: Evaluation metric used during training (e.g., "logloss").
+   
+   - **KNN**: K-Nearest Neighbors classifier parameters.
+     - `Neighbors`: Number of neighbors to consider.
+     - `Metric`: Distance metric used (e.g., "minkowski", "euclidean", "manhattan").
+     - `Weights`: Weight function used in prediction (e.g., "distance").
+   
+   - **ClassWeight**: Class weight applied to handle imbalanced data (e.g., "balanced").
+   
+   ### 6. Training
+   
+   - **GridSearchCV**: Parameters for model training using cross-validation and hyperparameter optimization.
+     - `CV`: Number of folds in cross-validation.
+     - `Scoring`: The scoring metric used for model evaluation (e.g., "recall").
+     - `Verbose`: Level of verbosity during model training (higher values provide more output).
+     - `TestSize`: Proportion of data to use for testing.
+   
+   - **Seed**: Random seed for reproducibility during model training.
+   
+   ### 7. Joblib
+   
+   - **Parallelize**: Whether to parallelize model training using Joblib (`true` or `false`).
+   - **NumJobs**: Number of CPU cores to use for parallelization (`-1` means using all available cores).
