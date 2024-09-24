@@ -82,14 +82,14 @@ To run the project, follow these steps:
      ```bash
      conda env create -f environment.yml
      ```
-4. **Activate Environment**:
+3. **Activate Environment**:
    -  **With Conda**:
       ```bash
       conda activate <env_name>
       ```
-5. ⚙️ **Set Configurations**:
+4. ⚙️ **Set Configurations**:
 
-   All project configurations are embedded in a single JSON file located at `configs/configs.json`. Below is an explanation of each configuration parameter and its purpose in the project:
+All project configurations are embedded in a single JSON file located at `configs/configs.json`. Below is an explanation of each configuration parameter and its purpose in the project:
    
    ### 1. Preprocessing
    
