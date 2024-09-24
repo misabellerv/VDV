@@ -53,3 +53,21 @@ Once the best model and hyperparameters were identified, the final step involved
 ---
 
 ## 🛠️ Workflow
+
+### 1. Workflow Overview
+
+Below is a diagram representing the workflow of the project:
+
+![load data](https://github.com/user-attachments/assets/9e6dbfba-9349-4c74-a8db-d6961ba82c6f)
+
+
+### 2. Running the Project
+
+To run the project, follow these steps:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/venus-volcano-detection.git
+   cd venus-volcano-detection
+   ```
