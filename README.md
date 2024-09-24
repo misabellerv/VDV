@@ -16,22 +16,33 @@ is undergoing a technological revolution. AI is capable of processing large volu
 
 ## 📊 Data
 
-The data for this project comes from the **Magellan mission**, which provided radar imaging of the Venusian surface. The processed version of the dataset can be accessed from [Kaggle]([https://www.kaggle.com/datasets/fmena14/volcanoesvenus]). The original images from the radar, with a resolution of 75
-meters per pixel, were cropped into smaller sections and converted to grayscale, with
-a resolution of 120 × 120 pixels. This processing facilitates a better interpretation of each
-image by reducing the amount of encoded information and increasing the volume of
-data available for machine learning models.
+The data for this project comes from the **Magellan mission**, which provided radar imaging of the Venusian surface. The processed version of the dataset can be accessed from Kaggle (https://www.kaggle.com/datasets/fmena14/volcanoesvenus). The original images from the radar, with a resolution of 75 meters per pixel, were cropped into smaller sections and converted to grayscale, with a resolution of 120 × 120 pixels. This processing facilitates a better interpretation of each image by reducing the amount of encoded information and increasing the volume of data available for machine learning models.
+
+More details of data analysis can be found at (to be defined...).
 
 ---
 
 ## 🔬 Methodology
+### 1. Data Augmentation
 
-The workflow follows a multi-step approach combining classical image processing techniques with deep learning:
+Given the imbalance in the dataset, with 6000 non-volcanic images and 1000 volcanic images in the training set, we applied intrinsic data augmentation to address this issue. The goal was to balance the dataset and improve the performance of machine learning models. We created 5 augmented copies of the training set containing volcanic images, applying the following transformations:
 
-1. **Data Preprocessing**: Normalize image data and clean noise from radar images.
-2. **Feature Extraction**: Use convolutional neural networks (CNNs) to extract visual features.
-3. **Model Training**: Train models to detect volcanoes based on labeled examples.
-4. **Evaluation**: Evaluate model performance using accuracy, precision, and recall metrics.
+- **CLAHE (Contrast Limited Adaptive Histogram Equalization)**
+- **Random Horizontal Flip**
+- **Random Vertical Flip**
+- **Random Diagonal Flip (D1)**
+- **Random Anti-Diagonal Flip (D2)**
+
+For each augmented dataset, the corresponding labels were generated (`1` for volcanic and `0` for non-volcanic). The augmented volcanic images were combined with the original dataset, resulting in a balanced dataset of 6000 volcanic images and 6000 non-volcanic images. The final dataset was randomly shuffled to avoid bias.
+
+### 2. Preprocessing and Feature Extraction
+
+We tested two main approaches for feature extraction after normalizing the images:
+
+1. **Gaussian Blur** + HOG (Histogram of Oriented Gradients)
+2. **Wavelet Denoising** + HOG
+
+The images were first normalized and then passed through either Gaussian blur or wavelet denoising for noise reduction. The key features were extracted using the HOG algorithm, and we conducted two separate tests to evaluate which preprocessing method provided better model performance in terms of optimization and evaluation metrics.
 
 ---
 
