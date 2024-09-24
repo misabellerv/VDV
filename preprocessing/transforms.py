@@ -23,13 +23,23 @@ class DenoiseWavelet(BaseEstimator, TransformerMixin):
     
     def transform(self, X, y=None):
         coeffs = pywt.wavedec2(X, self.wavelet, level=self.level)
-        sigma = (1/0.6745) * np.median(np.abs(coeffs[-self.level] - np.median(coeffs[-self.level])))
+        
+        sigma = (1 / 0.6745) * np.median(np.abs(coeffs[-self.level] - np.median(coeffs[-self.level])))
         uthresh = sigma * np.sqrt(2 * np.log(X.size))
+        
         coeffs = list(coeffs)
-        coeffs[1:] = [(pywt.threshold(c[0], value=uthresh, mode=self.thresholding),
-                       pywt.threshold(c[1], value=uthresh, mode=self.thresholding),
-                       pywt.threshold(c[2], value=uthresh, mode=self.thresholding)) for c in coeffs[1:]]
+        
+        coeffs[1:] = [(self._threshold_with_nan_protection(c[0], uthresh),
+                       self._threshold_with_nan_protection(c[1], uthresh),
+                       self._threshold_with_nan_protection(c[2], uthresh)) for c in coeffs[1:]]
+        
         return pywt.waverec2(coeffs, self.wavelet)
+
+    def _threshold_with_nan_protection(self, data, value):
+        """Apply threshold and replace NaN with 0."""
+        thresholded = pywt.threshold(data, value=value, mode=self.thresholding)
+        thresholded = np.nan_to_num(thresholded) 
+        return thresholded
 
 class GaussianBlur(BaseEstimator, TransformerMixin):
     def __init__(self, kernel_size=3):
@@ -51,7 +61,7 @@ class ApplyHOG(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         if self.visualize:
             hog_features, hog_image = hog(X, visualize=self.visualize)
-            return hog_image
+            return hog_features
         else:
             hog_features = hog(X, visualize=self.visualize)
             return hog_features
