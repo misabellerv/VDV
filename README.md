@@ -39,8 +39,8 @@ For each augmented dataset, the corresponding labels were generated (`1` for vol
 
 We tested two main approaches for feature extraction after normalizing the images:
 
-2.1) **Gaussian Blur** + HOG (Histogram of Oriented Gradients)
-2.2) **Wavelet Denoising** + HOG
+- **Gaussian Blur** + HOG (Histogram of Oriented Gradients)
+- **Wavelet Denoising** + HOG
 
 The images were first normalized and then passed through either Gaussian blur or wavelet denoising for noise reduction. The key features were extracted using the HOG algorithm, and we conducted two separate tests to evaluate which preprocessing method provided better model performance in terms of optimization and evaluation metrics.
 
