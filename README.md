@@ -90,6 +90,7 @@ To run the project, follow these steps:
    All project configurations are embedded in a single JSON file located at `configs/configs.json`. Please, check (to be defined) to more detailed instructions.
 
 5. **Training and Inference on Test Set**:
+
    After setting configurations, you can train models, predict metric results and generate confusion matrixes for the test set using the following command:
    ```bash
    python main.py
