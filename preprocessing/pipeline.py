@@ -44,8 +44,10 @@ def preprocess_pipeline(dataframe, config):
         delayed(process_image)(img, pipeline) for img in tqdm(array_df, desc='Processing Images', total=len(array_df))
     )
     
-    proc_df = np.array(proc_df).reshape(total_imgs, width * height)
-    proc_df = pd.DataFrame(proc_df)
+    proc_df = np.array(proc_df)
+    num_samples = proc_df.shape[0]  
+    num_features = proc_df.shape[1]
+    proc_df = pd.DataFrame(proc_df, columns=[f'{i}' for i in range(num_features)])
     
     print(f'Pre-processing Finished in {time.time() - start_time:.2f} Seconds!')
     
