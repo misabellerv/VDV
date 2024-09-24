@@ -68,6 +68,21 @@ To run the project, follow these steps:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/venus-volcano-detection.git
-   cd venus-volcano-detection
+   git clone https://github.com/misabellerv/VDV.git
+   cd VDV
+   ```
+
+2. **Install Dependencies**:
+ With pip:
+   ```bash
+   pip install -r requirements.txt
+   ```
+With Conda:
+   ```bash
+conda env create -f environment.yml
+   ```
+3. **Activate Environment**:
+   With Conda:
+   ```bash
+   conda activate <env_name>
    ```
