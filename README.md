@@ -44,6 +44,12 @@ We tested two main approaches for feature extraction after normalizing the image
 
 The images were first normalized and then passed through either Gaussian blur or wavelet denoising for noise reduction. The key features were extracted using the HOG algorithm, and we conducted two separate tests to evaluate which preprocessing method provided better model performance in terms of optimization and evaluation metrics.
 
+### 3. Training and Validation
+
+After preprocessing, the dataset was split into training and validation sets. We applied **k-fold cross-validation** to ensure robust model performance across different data splits. A **GridSearchCV** was performed to search for the best combination of hyperparameters for the model. 
+
+Once the best model and hyperparameters were identified, the final step involved training the model on the full training set and then predicting on the test set using the **optimal model** found through **GridSearchCV**.
+
 ---
 
 ## 🛠️ Workflow
